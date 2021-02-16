@@ -24,6 +24,16 @@ public class FortuneService {
         return fortuneList;
     }
 
+    public void addFortune(Fortune fortune) {
+        fortuneList.add(fortune);
+    }
+
+
+    public void deleteFortune(Long id)
+    {
+
+    }
+
     public Optional<Fortune> getRandom() {
 
         return Optional.ofNullable(null);
