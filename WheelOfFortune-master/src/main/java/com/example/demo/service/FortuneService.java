@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Fortune;
 import com.example.demo.repository.FortuneRepository;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +36,16 @@ public class FortuneService {
 
     }
 
-    public Optional<Fortune> getRandom() {
+    public List<Fortune> getFortuneList(){
+        return fortuneList;
+    }
 
+
+    public Optional<Fortune> getRandom() {
         return Optional.ofNullable(null);
+    }
+
+    public void getFortune(Long id)
+    {
     }
 }
