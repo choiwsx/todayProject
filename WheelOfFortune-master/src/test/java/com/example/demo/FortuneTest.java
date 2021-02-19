@@ -2,39 +2,50 @@ package com.example.demo;
 
 import com.example.demo.domain.Fortune;
 import com.example.demo.repository.FortuneRepository;
-import com.example.demo.service.FortuneService;
-import org.junit.Assert;
+import com.example.demo.service.MockFortuneService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
-import java.util.List;
-import java.util.Optional;
 
 
-//@SpringBootTest
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
 public class FortuneTest {
 
-
-    private FortuneService fortuneService;
+    private MockFortuneService mockFortuneService;
+    @Autowired
     private FortuneRepository fortuneRepository;
+
+
+    @AfterEach
+    public void cleanup()
+    {
+        fortuneRepository.deleteAll();
+    }
+
+
     @Test
     @DisplayName("랜덤 운세")
-    void random_fortune(){
+    public void random_fortune(){
+        for(int i=0; i<10; i++)
+        {
+            fortuneRepository.save(new Fortune((long)(i+1), "테스트"+(i+1)));
+        }
 
-//        int fortuneLen = fortuneService.getFortuneList().size();
-//        int random = ((int)(Math.random()*fortuneLen))+1;
-//        fortuneService = new FortuneService(fortuneRepository);
-//
-//        int random = 4;
-//
-//        Fortune fortune1 = fortuneService.getFortune((long)random);
-//        Fortune fortune2 = fortuneRepository.findByFortuneId((long)random);
-//
-//        Assert.assertEquals(fortune1, fortune2);
+        mockFortuneService = new MockFortuneService(fortuneRepository);
+
+        int random = 4;
+        Fortune fortune1 = mockFortuneService.getFortune((long)random);
+        Fortune fortune2 = fortuneRepository.findById((long)random).orElse(null);
+
+
+        System.out.println(fortune1.toString());
+        System.out.println(fortune2.toString());
+
+        assertThat(fortune1.equals(fortune2));
+
     }
 }
