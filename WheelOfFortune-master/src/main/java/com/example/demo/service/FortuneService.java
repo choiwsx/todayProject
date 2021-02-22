@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.Fortune;
 import com.example.demo.repository.FortuneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class FortuneService {
         fortuneList = fortuneRepository.findAll();
     }
 
+    @Cacheable(value="cache::fortune::query")
     public List<Fortune> getAll() {
         return fortuneList;
     }
