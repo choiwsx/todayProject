@@ -2,6 +2,7 @@ package com.login.ver01.jwt;
 
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-    private String secretKey = "webfirewood";
+    private String secretKey = "jwtTest";
 
     private long tokenValidTime = 30 * 60 * 1000L;
 
@@ -56,7 +58,28 @@ public class JwtTokenProvider {
     }
 
 
+    //토큰에서 회원 정보 추출
+    public String getUserPk(String token)
+    {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
 
 
+    // 리퀘스트 헤더에서 토큰 값 가져오기.
+    public String resolveToken(HttpServletRequest request)
+    {
+        return request.getHeader("X-AUTH-TOKEN");
+    }
+
+    public boolean validToken(String token)
+    {
+        try{
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            return !claims.getBody().getExpiration().before(new Date()); //지금 시간이 유효시간 전인지. 왜 !..
+        }  catch (Exception e)
+        {
+            return false;
+        }
+    }
 
 }
