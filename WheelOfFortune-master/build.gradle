@@ -28,9 +28,10 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     runtime('mysql:mysql-connector-java')
     compile("com.h2database:h2")
-
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    testImplementation 'junit:junit:4.13'
 }
-
 test {
     useJUnitPlatform()
 }
