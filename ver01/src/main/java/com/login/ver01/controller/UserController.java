@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -36,6 +38,15 @@ public class UserController {
     @PostMapping("/join")
     public Long join(@RequestBody Map<String, String> user)
     {
+//        System.out.println(user.get("email"));
+//        System.out.println(userRepository.findByEmail(user.get("email"))!=null);
+        Optional<User> getUser = userRepository.findByEmail(user.get("email"));
+        System.out.println(getUser);
+        if(getUser.isPresent())
+        {
+            System.out.println("여기농나");
+            throw new IllegalArgumentException("중복 되는 아이디 입니다.");
+        }
         return userRepository.save(User.builder()
                 .email(user.get("email"))
                 .password(passwordEncoder.encode(user.get("password")))
@@ -43,6 +54,11 @@ public class UserController {
                 .build()).getId();
     }
 
+    @GetMapping("/users")
+    public List<User> getUsers()
+    {
+        return userRepository.findAll();
+    }
 
     @PostMapping("/login")
     public String login(@RequestBody Map<String,String> user)
