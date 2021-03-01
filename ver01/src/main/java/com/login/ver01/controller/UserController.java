@@ -38,8 +38,6 @@ public class UserController {
     @PostMapping("/join")
     public Long join(@RequestBody Map<String, String> user)
     {
-//        System.out.println(user.get("email"));
-//        System.out.println(userRepository.findByEmail(user.get("email"))!=null);
         Optional<User> getUser = userRepository.findByEmail(user.get("email"));
         System.out.println(getUser);
         if(getUser.isPresent())
