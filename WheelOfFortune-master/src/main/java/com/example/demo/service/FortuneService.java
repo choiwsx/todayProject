@@ -4,6 +4,7 @@ import com.example.demo.domain.Fortune;
 import com.example.demo.repository.FortuneRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -22,6 +23,7 @@ public class FortuneService {
         fortuneList = fortuneRepository.findAll();
     }
 
+//    @Cacheable(value="cache::fortune::query")
     public List<Fortune> getAll() {
         return fortuneList;
     }
@@ -42,6 +44,8 @@ public class FortuneService {
 
 
     public Optional<Fortune> getRandom() {
+        int length = fortuneList.size();
+
         return Optional.ofNullable(null);
     }
 

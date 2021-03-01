@@ -43,9 +43,6 @@ public class FortuneTest {
         Fortune fortune2 = fortuneRepository.findById((long)random).orElse(null);
 
 
-        System.out.println(fortune1.toString());
-        System.out.println(fortune2.toString());
-
         assertThat(fortune1.equals(fortune2));
 
     }
