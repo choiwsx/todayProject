@@ -25,9 +25,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     runtime('mysql:mysql-connector-java')
+    compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.3'
     compile("com.h2database:h2")
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    compile group: 'org.bouncycastle', name : 'bcprov-jdk15on', version: '1.61'
     testImplementation 'junit:junit:4.13'
 }
 test {
