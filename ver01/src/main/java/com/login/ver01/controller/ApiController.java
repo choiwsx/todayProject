@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ApiController {
 
@@ -15,6 +15,7 @@ public class ApiController {
     public HashMap hello(){
         HashMap result = new HashMap();
         result.put("message", "안녕하세요");
+        System.out.println("여기는 오나");
         return result;
     }
 
