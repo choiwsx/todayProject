@@ -1,0 +1,5 @@
+rootProject.name = 'final-multi-modules'
+include 'module-common'
+include 'module-api'
+include 'module-web'
+

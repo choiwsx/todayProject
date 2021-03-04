@@ -1,14 +1,11 @@
-
-bootJar{
+bootJar {
     enabled = false
 }
-jar{
+jar {
     enabled = true
 }
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

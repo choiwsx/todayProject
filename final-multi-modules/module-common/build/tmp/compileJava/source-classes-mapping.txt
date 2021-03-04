@@ -1,0 +1,4 @@
+com/wonseok/common/repository/MemberRepository.java
+ com.wonseok.common.repository.MemberRepository
+com/wonseok/common/domain/Member.java
+ com.wonseok.common.domain.Member
