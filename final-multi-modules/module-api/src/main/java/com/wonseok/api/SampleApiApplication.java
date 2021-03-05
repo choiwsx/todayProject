@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan("com.wonseok.*")
-@EnableJpaRepositories("com.wonseok.*")
+@EnableJpaRepositories("com.wonseok.common.*")
 public class SampleApiApplication {
 
     public static void main(String[] args) {

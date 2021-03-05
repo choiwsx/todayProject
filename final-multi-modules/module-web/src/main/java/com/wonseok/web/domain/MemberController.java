@@ -24,8 +24,6 @@ public class MemberController {
         return new Member("wonseok", "wonseok@gmail.com");
     }
 
-//    public
-
 
 
 }
