@@ -1,5 +1,0 @@
-rootProject.name = 'sample-multi-modules'
-include 'module-api'
-include 'module-common'
-include 'module-web'
-
