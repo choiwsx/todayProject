@@ -28,11 +28,7 @@ class ChatComponent extends React.Component{
 
 
     handleButtonClicked(){
-        // this.clientRef.sendMessage('/app/user-all', JSON.stringify({
-        //     name : this.state.name,
-        //     message : this.state.typedMessage
-        // }));
-        this.clientRef.sendMessage('/app/room/1', JSON.stringify({
+        this.clientRef.sendMessage('/app/room/2', JSON.stringify({
             name : this.state.name,
             message : this.state.typedMessage
         }));
@@ -94,11 +90,9 @@ class ChatComponent extends React.Component{
                 </div>
 
                 <SockJsClient url='http://localhost:8080/websocket-chat/'
-                            //   topics={['/topic/user']}
-                            topics={['/topic/room/1']}
+                              topics={['/topic/room/2']}
                               onConnect={()=>{
                                   console.log("connected");
-
                               }}
                               onDisconnect={()=>{
                                   console.log("Disconnected");
